@@ -3,6 +3,7 @@
 import { StreamLayerProvider, StreamLayerSDKReact, DeepLinkCallback, VideoPlayerCallback } from '@streamlayer/react'
 import { StreamLayerSDKPoints } from '@streamlayer/react/points'
 import { StreamLayerLogin } from '@streamlayer/react/auth'
+import { StreamLayerSDKAdvertisement } from '@streamlayer/react/advertisement'
 import '@streamlayer/react/style.css'
 import { useState } from 'react'
 import styles from "./page.module.css";
@@ -82,15 +83,30 @@ export const SDK = () => {
                     </div>
                 </form>
             </div>
-            <div className={styles.sdk}>
-                <StreamLayerProvider sdkKey={SDK_KEY} production={PRODUCTION} onDeepLinkHandled={cb} videoPlayerController={toggleVideoVolume}>
+            <StreamLayerProvider sdkKey={SDK_KEY} production={PRODUCTION} onDeepLinkHandled={cb} videoPlayerController={toggleVideoVolume}>
+                <div className={styles.sdk}>
                     <div className={styles.points}>
                         <StreamLayerSDKPoints />
                     </div>
                     <StreamLayerLogin token={user.token} schema={user.schema} />
                     <StreamLayerSDKReact event={event} />
-                </StreamLayerProvider>
-            </div>
+                </div>
+                <div className={styles.advertisement}>
+                    <h3>Advertisement</h3>
+                    <div>
+                        <p>sidebar</p>
+                        <StreamLayerSDKAdvertisement event={event} sidebar="left" layoutMode="side-by-side" />
+                    </div>
+                    <div>
+                        <p>banner</p>
+                        <StreamLayerSDKAdvertisement event={event} banner="bottom" layoutMode="side-by-side" />
+                    </div>
+                    <div>
+                        <p>overlay</p>
+                        <StreamLayerSDKAdvertisement event={event} />
+                    </div>
+                </div>
+            </StreamLayerProvider>
         </>
     )
 }

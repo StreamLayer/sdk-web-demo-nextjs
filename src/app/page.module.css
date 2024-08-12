@@ -37,3 +37,16 @@
   top: 0;
   left: 0;
 }
+
+.advertisement {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 400px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.advertisement > h3 {
+  color: red;
+}
